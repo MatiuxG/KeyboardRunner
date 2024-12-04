@@ -6,11 +6,15 @@ using System;
 public class PlayerController : MonoBehaviour
 {
    [Header("Variables")]
-    public float jumpForce = 10f; // Fuerza del salto
+    [SerializeField]private float jumpForce = 10f; // Fuerza del salto
+    
 
     [Header("References")]
     [SerializeField]private Rigidbody2D rb;       // Para manejar físicas
-     [SerializeField]public TextMeshProUGUI keyDisplayText; // Mostrar Tecla por Pantalla
+    [SerializeField]private TextMeshProUGUI keyDisplayText; // Mostrar Tecla por Pantalla
+    [SerializeField]private GameManager gameManager; 
+
+
     private bool isGrounded;      // Verifica si el jugador está en el suelo
     private KeyCode currentKey;   // Tecla actual generada
     private System.Random random; // Generador de teclas aleatorias
@@ -66,12 +70,13 @@ public class PlayerController : MonoBehaviour
         if (collision.collider.CompareTag("Ground"))
         {
             isGrounded = true;
+            gameManager.Addpoint();
         }
 
         if (collision.collider.CompareTag("Obstacle"))
         {
         Debug.Log("¡Has chocado con un obstáculo!");
-        // Aquí puedes implementar la lógica de pérdida o reinicio
+        gameManager.GameOver();
         }
     }
 
@@ -83,4 +88,6 @@ public class PlayerController : MonoBehaviour
             isGrounded = false;
         }
     }
+
+   
 }
