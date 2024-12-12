@@ -2516,21 +2516,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1067222204165139931, guid: 5c7cbf5749fcbb94fa8c1a0673da00a0, type: 3}
-      propertyPath: jumpForce
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1067222204165139931, guid: 5c7cbf5749fcbb94fa8c1a0673da00a0, type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 795091552}
     - target: {fileID: 1948593057992093999, guid: 5c7cbf5749fcbb94fa8c1a0673da00a0, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1948593057992093999, guid: 5c7cbf5749fcbb94fa8c1a0673da00a0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4006041011203694581, guid: 5c7cbf5749fcbb94fa8c1a0673da00a0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2571,10 +2559,6 @@ PrefabInstance:
     - target: {fileID: 4006041011203694581, guid: 5c7cbf5749fcbb94fa8c1a0673da00a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4344810851340628216, guid: 5c7cbf5749fcbb94fa8c1a0673da00a0, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

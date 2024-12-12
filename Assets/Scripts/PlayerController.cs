@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField]private Rigidbody2D rb;       // Para manejar físicas
     [SerializeField]private TextMeshProUGUI keyDisplayText; // Mostrar Tecla por Pantalla
+    [SerializeField]private Animator PlayerAnimator;
 
     public Action OnCollisionDetected { get; set; }
     public Action PauseGame { get; set; }
@@ -89,6 +90,7 @@ public class PlayerController : MonoBehaviour
         if (collision.collider.CompareTag("Ground"))
         {
             isGrounded = true;
+            PlayerAnimator.SetBool("IsGrounded",true);
         }
 
         if (collision.collider.CompareTag("Obstacle"))
@@ -104,6 +106,7 @@ public class PlayerController : MonoBehaviour
         if (collision.collider.CompareTag("Ground"))
         {
             isGrounded = false;
+            PlayerAnimator.SetBool("IsGrounded",false);
         }
     }
 
