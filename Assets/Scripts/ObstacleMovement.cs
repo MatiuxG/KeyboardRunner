@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class ObstacleMovement : MonoBehaviour
         // Destruir el obstáculo si sale de la pantalla
         if (transform.position.x < -10f) // Ajusta este valor según tu escena
         {
+           
             Destroy(gameObject);
         }
     }

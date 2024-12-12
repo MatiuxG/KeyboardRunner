@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,8 +13,11 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField]private Rigidbody2D rb;       // Para manejar físicas
     [SerializeField]private TextMeshProUGUI keyDisplayText; // Mostrar Tecla por Pantalla
-    [SerializeField]private GameManager gameManager; 
 
+    public Action OnCollisionDetected { get; set; }
+    public Action PauseGame { get; set; }
+    
+    public Action AddPoint { get; set; }
 
     private bool isGrounded;      // Verifica si el jugador está en el suelo
     private KeyCode currentKey;   // Tecla actual generada
@@ -40,6 +44,12 @@ public class PlayerController : MonoBehaviour
             Jump();
             GenerateNewKey();
         }
+
+         if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("Tecla Escape pulsada");
+            PauseGame?.Invoke();
+        }
     }
 
     private void Jump()
@@ -64,19 +74,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if(other.tag=="AddPoint")
+        {
+            AddPoint?.Invoke();
+        }
+
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Verificar si el jugador toca el suelo
         if (collision.collider.CompareTag("Ground"))
         {
             isGrounded = true;
-            gameManager.Addpoint();
         }
 
         if (collision.collider.CompareTag("Obstacle"))
         {
         Debug.Log("¡Has chocado con un obstáculo!");
-        gameManager.GameOver();
+            OnCollisionDetected?.Invoke();
         }
     }
 
