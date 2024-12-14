@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
      string pointsLanguage="Points"; //Futura apatacion de idiomas
     void Start()
     {
+        CursorState(false);
         GameOverCanvas.SetActive(false);
         PauseCanvas.SetActive(false);
         ScoreCanvas.SetActive(true);
@@ -38,17 +39,20 @@ public class GameManager : MonoBehaviour
         playerToObserve.PauseGame+=PauseGame;
         playerToObserve.AddPoint+=Addpoint;
     }
+
     void Awake(){
         Time.timeScale=1;
     }
     public void GameOver(){
         GameOverCanvas.SetActive(true);
         Time.timeScale = 0;
+        CursorState(true);
     }
       public void PauseGame(){
        Time.timeScale = IsPaused? 1 : 0;
        IsPaused=!IsPaused;
        PauseCanvas.SetActive(IsPaused);
+       CursorState(IsPaused);
     }
 
     public void LoadScene(string SceneName){
@@ -64,6 +68,12 @@ public class GameManager : MonoBehaviour
              ChangeSpawnVelocity?.Invoke();
              Debug.Log("Velocidad Cambiada");
         }
+
+    }
+
+    void CursorState(bool state){
+        Cursor.visible = state;
+        Cursor.lockState=state?CursorLockMode.None:CursorLockMode.Locked;
 
     }
 
